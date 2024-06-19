@@ -51,7 +51,7 @@ Given the security considerations for our system, we will use the following stra
 - Back-End Module: Manages server-side logic, API requests, and database interactions.
 - Database Module: Stores and retrieves all application data.
 6.2 Component Diagrams
-![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---1WUj1wymhnWPveI8l6nvl---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
+![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---MEWcaks_p90OJQTmuWsBV---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
 
 
 
@@ -61,7 +61,10 @@ Given the security considerations for our system, we will use the following stra
 - Auth table: Stores hashed passwords with a foreign key reference to the user table.
 - AuthCodes: Verification codes to confirm email address. They will expire after 30 minutes.
 - Task table : Stores details of each curriculum, including sections and resources.
-1. Key Architectural Decisions
+![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---mdkol_Z95sQjT1WPQpw6t---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
+
+7. Key Architectural Decisions
+
 7.1 Decision Log
 
 - Monolithic Architecture: Chosen for its simplicity and ease of deployment for the MVP.
@@ -90,7 +93,7 @@ Given the security considerations for our system, we will use the following stra
 <!-- eraser-additional-content -->
 ## Diagrams
 <!-- eraser-additional-files -->
-<a href="/design_docs/project_architecture-Database Design with SQL-1.eraserdiagram" data-element-id="4T3a98u1bgTbF7lcdiuUw"><img src="/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---diagram----606ce98c4788b701fcb916fcdff79452-Database-Design-with-SQL.png" alt="" data-element-id="4T3a98u1bgTbF7lcdiuUw" /></a>
+<a href="/design_docs/project_architecture-Database Design with SQL-1.eraserdiagram" data-element-id="4T3a98u1bgTbF7lcdiuUw"><img src="/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---diagram----922c8ecde7afbb5f982096fbb8d8c543-Database-Design-with-SQL.png" alt="" data-element-id="4T3a98u1bgTbF7lcdiuUw" /></a>
 <!-- end-eraser-additional-files -->
 <!-- end-eraser-additional-content -->
 <!--- Eraser file: https://app.eraser.io/workspace/pqCx9JVttXYKuNk2ju6p --->

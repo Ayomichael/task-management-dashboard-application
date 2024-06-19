@@ -28,6 +28,7 @@ tasks [icon: clipboard, color: blue]{
   priority enum
   due_date Datetime
   category string
+  userId string fk
   assigned_to string fk
 }
 // End of tables
