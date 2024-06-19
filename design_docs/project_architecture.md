@@ -7,7 +7,7 @@ Task Management Dashboard App MVP
 This document outlines the architectural plan for the Minimum Viable Product (MVP) of the Task Management Dashboard App. It's intended for the project's development and future architects. It will guide the initial development and future enhancements.
 
 1.2 Scope
-The architecture covers the MVP of the Curriculum App, focusing on user account management, curriculum creation, viewing, updating, and deletion.
+The architecture covers the MVP of the Task Management App, focusing on user account management, curriculum creation, viewing, updating, and deletion.
 
 1.3 Definitions, Acronyms, and Abbreviations 
 
