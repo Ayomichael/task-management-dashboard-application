@@ -74,7 +74,7 @@ Given the security considerations for our system, we will use the following stra
 -  Database Module: Stores and retrieves all application data.
 6.2 Component Diagrams
 
-[﻿Task Mgt. Component](https://app.eraser.io/workspace/pqCx9JVttXYKuNk2ju6p?elements=lTVO0ZxvHsp_ElUJ-B-K1A) 
+![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---6LuTDv3WRV-zb_cXuihdi---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
 
 6.3 Database Design
 
