@@ -36,7 +36,7 @@ The system will use a Monolithic Architectural Style for the MVP to simplify dep
 3. System Stakeholders and Concerns
 3.1 Stakeholders
 
-- Users: Individuals creating and managing their learning curriculum.
+- Users: Individuals creating and managing their task.
 - Developer: The team developing and maintaining the app.
 3.2 System Concerns
 
