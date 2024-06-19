@@ -7,7 +7,7 @@ Task Management Dashboard App MVP
 This document outlines the architectural plan for the Minimum Viable Product (MVP) of the Task Management Dashboard App. It's intended for the project's development and future architects. It will guide the initial development and future enhancements.
 
 1.2 Scope
-The architecture covers the MVP of the Task Management App, focusing on user account management, curriculum creation, viewing, updating, and deletion.
+The architecture covers the MVP of the Task Management App, focusing on user account management, task creation, viewing, updating, and deletion.
 
 1.3 Definitions, Acronyms, and Abbreviations 
 
@@ -50,13 +50,13 @@ The system will use a Monolithic Architectural Style for the MVP to simplify dep
 The Task Management App allows users to create, manage, and update their tasks. It includes user authentication, task management.
 
 
-
 5. Architectural Strategies
 5.1 Key Strategies
 Given the requirements for this project, we will use the follow technologies: 
 
 -  Utilize HTML and Tailwind CSS for a dynamic and responsive front-end. 
-- Implement Django for a robust back-end(API endpoints and database management). - Use Django's built-in User model. 
+- Implement Django for a robust back-end(API endpoints and database management).
+- Use Django's built-in User model. 
 -  Use JQuery AJAX for Dynamic task loading to make requests to the API endpoints.
 Given the security considerations for our system, we will use the following strategy:
 
@@ -114,6 +114,7 @@ Given the security considerations for our system, we will use the following stra
 
 - User Adoption: Risks related to market competition and user acquisition.
 - Technical Challenges: Potential issues with integrating different technologies.
+
 9.2 Technical Debt 
 
 - Rapid Development: Some best practices might be compromised for faster MVP rollout.
