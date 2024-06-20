@@ -51,7 +51,11 @@ Given the security considerations for our system, we will use the following stra
 - Back-End Module: Manages server-side logic, API requests, and database interactions.
 - Database Module: Stores and retrieves all application data.
 6.2 Component Diagrams
-![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---MEWcaks_p90OJQTmuWsBV---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
+![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---TM55eAwH_l_vNtJK5KtH4---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
+
+
+
+![client/server](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---Y_HxqmVRXDrFgmtFS24qI---figure---41gMjtYotjn8G6ld6f-JUQ.png "client/server")
 
 
 
@@ -61,7 +65,7 @@ Given the security considerations for our system, we will use the following stra
 - Auth table: Stores hashed passwords with a foreign key reference to the user table.
 - AuthCodes: Verification codes to confirm email address. They will expire after 30 minutes.
 - Task table : Stores details of each curriculum, including sections and resources.
-![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---mdkol_Z95sQjT1WPQpw6t---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
+![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---akKoxIDT5k2MYNwW8sqiY---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
 
 7. Key Architectural Decisions
 
@@ -94,6 +98,7 @@ Given the security considerations for our system, we will use the following stra
 ## Diagrams
 <!-- eraser-additional-files -->
 <a href="/design_docs/project_architecture-Database Design with SQL-1.eraserdiagram" data-element-id="4T3a98u1bgTbF7lcdiuUw"><img src="/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---diagram----922c8ecde7afbb5f982096fbb8d8c543-Database-Design-with-SQL.png" alt="" data-element-id="4T3a98u1bgTbF7lcdiuUw" /></a>
+<a href="/design_docs/project_architecture-sequence-diagram-2.eraserdiagram" data-element-id="qvTE-O5sMHbAnX_G0I90r"><img src="/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---diagram----b9ff8ff96807345e69b6d13413d95ec6.png" alt="" data-element-id="qvTE-O5sMHbAnX_G0I90r" /></a>
 <!-- end-eraser-additional-files -->
 <!-- end-eraser-additional-content -->
 <!--- Eraser file: https://app.eraser.io/workspace/pqCx9JVttXYKuNk2ju6p --->
