@@ -51,11 +51,11 @@ Given the security considerations for our system, we will use the following stra
 - Back-End Module: Manages server-side logic, API requests, and database interactions.
 - Database Module: Stores and retrieves all application data.
 6.2 Component Diagrams
-![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---TM55eAwH_l_vNtJK5KtH4---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
+![Task Mgt. Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---6fkHa2x4uUnvooTsWNxHZ---figure---lTVO0ZxvHsp_ElUJ-B-K1A.png "Task Mgt. Component")
 
 
 
-![client/server](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---Y_HxqmVRXDrFgmtFS24qI---figure---41gMjtYotjn8G6ld6f-JUQ.png "client/server")
+![client/server](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---XEDibzdP77odCCrCNA1T9---figure---41gMjtYotjn8G6ld6f-JUQ.png "client/server")
 
 
 
@@ -65,7 +65,7 @@ Given the security considerations for our system, we will use the following stra
 - Auth table: Stores hashed passwords with a foreign key reference to the user table.
 - AuthCodes: Verification codes to confirm email address. They will expire after 30 minutes.
 - Task table : Stores details of each curriculum, including sections and resources.
-![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---akKoxIDT5k2MYNwW8sqiY---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
+![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---CuFXhfO40hTmFwtGHxU0g---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
 
 7. Key Architectural Decisions
 
