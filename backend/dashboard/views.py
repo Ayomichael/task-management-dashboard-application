@@ -1,17 +1,84 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 from rest_framework import generics
 from .serializers import UserSerializer, TaskSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Task
 from datetime import date
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+import json
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
-class CreateUserView(generics.CreateAPIView):
+# class CreateUserView(generics.CreateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     permission_classes = [AllowAny]
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CreateUserView(View):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body.decode("utf-8"))
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
+        
+        if not (username and email and password):
+            return JsonResponse({'error': 'All fields are required'}, status=400)
+        
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'error': 'Username already exists'}, status=400)
+        
+        if User.objects.filter(email=email).exists():
+            return JsonResponse({'error': 'Email already exists'}, status=400)
+        
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        
+        return JsonResponse({'message': 'User created successfully'}, status=201)   
 
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LoginView(View):
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body.decode("utf-8"))
+        username = data.get('username')
+        password = data.get('password')
+        
+        if not (username and password):
+            return JsonResponse({'error': 'All fields are required'}, status=400)
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'message': 'Login successful'}, status=200)
+        else:
+            return JsonResponse({'error': 'Invalid credentials'}, status=400)
+    
+    @api_view(['POST'])
+    def login(request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            })
+        else:
+            return Response({'detail': 'Invalid credentials'}, status=400)
+        
 class TaskListCreate(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
