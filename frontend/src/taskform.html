@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Task</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="main.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        background-color: #4f46e5; /* Blue background color from the image */
+      }
+    </style>
+  </head>
+
+  <body class="bg-indigo-600 font-sans">
+    <div class="flex justify-center items-center h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
+        <h2 class="text-2xl font-bold mb-6">Create New Task</h2>
+        <form
+          id="create-task-form"
+          class="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          <div class="mb-4">
+            <label for="title" class="block text-gray-700">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="category" class="block text-gray-700">Category</label>
+            <input
+              type="text"
+              name="category"
+              id="category"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+          <div class="mb-4 col-span-1 md:col-span-2">
+            <label for="description" class="block text-gray-700"
+              >Description</label
+            >
+            <textarea
+              name="description"
+              id="description"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            ></textarea>
+          </div>
+          <div class="mb-4">
+            <label for="status" class="block text-gray-700">Status</label>
+            <select
+              name="status"
+              id="status"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            >
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Overdue">Overdue</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="priority" class="block text-gray-700">Priority</label>
+            <select
+              name="priority"
+              id="priority"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="due_date" class="block text-gray-700">Due Date</label>
+            <input
+              type="datetime-local"
+              name="due_date"
+              id="due_date"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="assigned_to" class="block text-gray-700"
+              >Assign To</label
+            >
+            <select
+              name="assigned_to"
+              id="assigned_to"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            >
+              <!-- Populate options dynamically from backend -->
+              <option value="1">User 1</option>
+              <option value="2">User 2</option>
+              <!-- Add more user options as needed -->
+            </select>
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <button
+              type="submit"
+              class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-blue-600 transition duration-200"
+            >
+              Create Task
+            </button>
+          </div>
+        </form>
+        <div id="success-message" class="mt-4 hidden text-green-500">
+          Task created successfully!
+        </div>
+        <div id="error-message" class="mt-4 hidden text-red-500">
+          Failed to create task. Please try again.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#create-task-form").on("submit", function (e) {
+          e.preventDefault();
+
+          let formData = {
+            title: $("#title").val(),
+            description: $("#description").val(),
+            status: $("#status").val(),
+            priority: $("#priority").val(),
+            due_date: $("#due_date").val(),
+            category: $("#category").val(),
+            assigned_to: $("#assigned_to").val(),
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/tasks/",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            headers: {
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            success: function (response) {
+              $("#success-message").removeClass("hidden");
+              $("#error-message").addClass("hidden");
+              $("#create-task-form")[0].reset();
+            },
+            error: function (response) {
+              $("#error-message").removeClass("hidden");
+              $("#success-message").addClass("hidden");
+            },
+          });
+        });
+
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== "") {
+            let cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+              let cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(
+                  cookie.substring(name.length + 1)
+                );
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+      });
+    </script>
+  </body>
+</html>

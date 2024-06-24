@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasky Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+    <!-- Sidebar -->
+    <div class="flex">
+      <div class="w-64 bg-white h-screen shadow-md fixed">
+        <div class="p-4 text-blue-600 font-bold text-xl">Tasky</div>
+        <nav class="mt-10">
+          <a
+            href="#"
+            class="block py-2.5 px-4 text-gray-700 hover:bg-blue-100 rounded transition duration-200 flex items-center"
+            ><img
+              src="../assets/icons/home.svg"
+              alt=""
+              class="h-6 w-6 mr-2"
+            />Dashboard</a
+          >
+          <a
+            href="#"
+            class="block py-2.5 px-4 text-gray-700 hover:bg-blue-100 rounded transition duration-200 flex items-center"
+            ><img
+              src="../assets/icons/task-fill.svg"
+              alt=""
+              class="h-6 w-6 mr-2"
+            />Tasks</a
+          >
+          <a
+            href="#"
+            class="block py-2.5 px-4 text-gray-700 hover:bg-blue-100 rounded transition duration-200 flex items-center"
+            ><img
+              src="../assets/icons/calendar-check-fill.svg"
+              alt=""
+              class="h-6 w-6 mr-2"
+            />Calendar</a
+          >
+          <a
+            href="#"
+            class="block py-2.5 px-4 text-gray-700 hover:bg-blue-100 rounded transition duration-200 flex items-center"
+            ><img
+              src="../assets/icons/group-fill.svg"
+              alt=""
+              class="h-6 w-6 mr-2"
+            />Members</a
+          >
+        </nav>
+        <div class="absolute bottom-0 left-0 w-full p-4">
+          <div class="flex items-center p-4 bg-blue-50 rounded-lg shadow">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Rocket"
+              class="w-10 h-10"
+            />
+            <span class="ml-4 text-blue-600 font-semibold">Upgrade to pro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 ml-64 p-8">
+        <!-- Header -->
+        <header class="flex items-center justify-between mb-8">
+          <input
+            type="search"
+            placeholder="Search tasks"
+            class="w-1/3 p-2 border border-gray-300 rounded"
+          />
+
+          <div class="flex items-center space-x-4">
+            <button>
+              <img
+                src="../assets/icons/chat-remove.svg"
+                alt="Profile"
+                class="w-8 h-8 rounded-full"
+              />
+            </button>
+            <button>
+              <img
+                src="../assets/icons/bell-icon.svg"
+                alt="Profile"
+                class="w-8 h-8 rounded-full"
+              />
+            </button>
+            <img
+              src="../assets/images/avatar.jpg"
+              alt="Profile"
+              class="w-8 h-8 rounded-full"
+            />
+          </div>
+        </header>
+        <div>
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="flex space-x-4">
+                <button
+                  class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-blue-600 transition duration-200"
+                >
+                  <img
+                    src="../assets/icons/maximize-icon.svg"
+                    class="w-4 h-4 mr-2"
+                    alt=""
+                  />
+                  Preview
+                </button>
+                <button
+                  class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition duration-200"
+                >
+                  <img
+                    src="../assets/icons/arrow-up-down-line.svg"
+                    class="w-4 h-4 mr-2"
+                    alt=""
+                  />
+                  Sort
+                </button>
+                <button
+                  class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition duration-200"
+                >
+                  <img
+                    src="../assets/icons/equalizer-line.svg"
+                    class="w-4 h-4 mr-2"
+                    alt=""
+                  />
+                  Filter
+                </button>
+              </div>
+            </div>
+            <div class="relative flex">
+              <img
+                src="../assets/images/person-1.jpg"
+                alt="User Avatar"
+                class="w-8 h-8 rounded-full -ml-4"
+              />
+              <img
+                src="../assets/images/person-2.jpg"
+                alt="User Avatar"
+                class="w-8 h-8 rounded-full -ml-4"
+              />
+              <img
+                src="../assets/images/person-3.jpg"
+                alt="User Avatar"
+                class="w-8 h-8 rounded-full -ml-4"
+              />
+              <span
+                class="w-8 h-8 rounded-full bg-indigo-600 justify-center text-white -ml-4"
+                >+2</span
+              >
+            </div>
+
+            <button
+              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
+              onclick="window.location.href = '../src/taskform.html'"
+            >
+              + Add task
+            </button>
+          </div>
+        </div>
+        <!-- </header> -->
+
+        <!-- Task Lists -->
+        <div class="grid grid-cols-3 gap-8">
+          <!-- In Progress -->
+          <div id="in-progress">
+            <h2 class="mb-4 text-xl font-bold">In Progress</h2>
+            <div
+              id="in-progress"
+              class="bg-white p-4 rounded-lg shadow-md mb-4 cursor-pointer hover:bg-blue-100 rounded transition duration-200"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded"
+                  >High</span
+                >
+                <span class="text-gray-500 text-sm">6:00 PM</span>
+                <span class="text-purple-600 text-sm">UX Design</span>
+              </div>
+              <h4 class="font-semibold mb-2">User Flow</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Designing a dashboard involves...
+              </p>
+              <div class="flex justify-between">
+                <div class="relative flex px-2">
+                  <img
+                    src="../assets/images/person-1.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-2.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-3.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <span
+                    class="w-6 h-6 rounded-full bg-indigo-600 justify-center text-white -ml-4"
+                    >+2</span
+                  >
+                </div>
+                <div class="relative flex px-2 gap-2">
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/eye-line.svg"
+                      alt="Eye Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/delete-bin-line.svg"
+                      alt="Delete Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/pencil-line.svg"
+                      alt="Edit Icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white p-4 rounded-lg shadow-md mb-4 cursor-pointer hover:bg-blue-100 rounded transition duration-200"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded"
+                  >Medium</span
+                >
+                <span class="text-gray-500 text-sm">Tomorrow</span>
+                <span class="text-blue-600 text-sm">Development</span>
+              </div>
+              <h4 class="font-semibold mb-2">Website Design</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Designing a website involves...
+              </p>
+              <div class="flex justify-between">
+                <div class="relative flex px-2">
+                  <img
+                    src="../assets/images/person-1.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-2.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-3.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <span
+                    class="w-6 h-6 rounded-full bg-indigo-600 justify-center text-white -ml-4"
+                    >+2</span
+                  >
+                </div>
+                <div class="relative flex px-2 gap-2">
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/eye-line.svg"
+                      alt="Eye Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/delete-bin-line.svg"
+                      alt="Delete Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/pencil-line.svg"
+                      alt="Edit Icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Completed Task -->
+          <div id="completed-task">
+            <h2 class="mb-4 text-xl font-bold">Completed Task</h2>
+            <div
+              class="bg-white p-4 rounded-lg shadow-md mb-4 cursor-pointer hover:bg-blue-100 rounded transition duration-200"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded"
+                  >High</span
+                >
+                <span class="text-gray-500 text-sm">6:00 PM</span>
+                <span class="text-purple-600 text-sm">UX Design</span>
+              </div>
+              <h4 class="font-semibold mb-2">User Flow</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Designing a dashboard involves...
+              </p>
+              <div class="flex justify-between">
+                <div class="relative flex px-2">
+                  <img
+                    src="../assets/images/person-1.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-2.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-3.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <span
+                    class="w-6 h-6 rounded-full bg-indigo-600 justify-center text-white -ml-4"
+                    >+2</span
+                  >
+                </div>
+                <div class="relative flex px-2 gap-2">
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/eye-line.svg"
+                      alt="Eye Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/delete-bin-line.svg"
+                      alt="Delete Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/pencil-line.svg"
+                      alt="Edit Icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- More Completed Tasks... -->
+          </div>
+          <!-- Over-Due -->
+          <div id="over-due">
+            <h2 class="mb-4 text-xl font-bold">Over-Due</h2>
+            <div
+              class="bg-white p-4 rounded-lg shadow-md mb-4 cursor-pointer hover:bg-blue-100 rounded transition duration-200"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded"
+                  >High</span
+                >
+                <span class="text-gray-500 text-sm">22/06/23</span>
+                <span class="text-purple-600 text-sm">UX Design</span>
+              </div>
+              <h4 class="font-semibold mb-2">User Flow</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Designing a dashboard involves...
+              </p>
+              <div class="flex justify-between">
+                <div class="relative flex px-2">
+                  <img
+                    src="../assets/images/person-1.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-2.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <img
+                    src="../assets/images/person-3.jpg"
+                    alt="User Avatar"
+                    class="w-6 h-6 rounded-full -ml-4"
+                  />
+                  <span
+                    class="w-6 h-6 rounded-full bg-indigo-600 justify-center text-white -ml-4"
+                    >+2</span
+                  >
+                </div>
+                <div class="relative flex px-2 gap-2">
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/eye-line.svg"
+                      alt="Eye Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/delete-bin-line.svg"
+                      alt="Delete Icon"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      class="w-10 h-10 -ml-4"
+                      src="../assets/icons/pencil-line.svg"
+                      alt="Edit Icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- More Over-Due Tasks... -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <script>
+      $(document).ready(function () {
+        var token = localStorage.getItem("token");
+
+        if (!token) {
+          window.location.href = "../src/login.html";
+        }
+
+        $.ajax({
+          url: "http://127.0.0.1:8000/tasks/",
+          type: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          success: function (response) {
+            var tasksContainer = $("#tasks-container");
+            response.tasks.forEach(function (task) {
+              tasksContainer.append(`
+                            <div class="task-card">
+                                <div class="task-header">
+                                    <span class="priority ${task.priority}">${task.priority}</span>
+                                    <span class="due-date"><img src="../assets/icons/time-line.svg" alt="Clock Icon">${task.due_date}</span>
+                                    <span class="category">${task.category}</span>
+                                </div>
+                                <div class="tab-body-item">
+                                    <div class="item-top">
+                                        <div class="item-top-title"><p>${task.title}</p></div>
+                                        <button class="item-top-btn"><img src="../assets/icons/more-2-line.svg" alt="" /></button>
+                                    </div>
+                                    <div class="item-body">
+                                        <p class="item-body-text">${task.description}</p>
+                                        <div class="item-tasks">
+                                            <div class="item-avatar">
+                                                <img src="../assets/images/person-1.jpg" alt="" />
+                                                <img src="../assets/images/person-3.jpg" alt="" />
+                                                <span class="avatar-count">+2</span>
+                                            </div>
+                                            <div class="item-comments">
+                                                <div class="item-comments-text">
+                                                    <img src="../assets/icons/eye-line.svg" alt="" />
+                                                    <img src="../assets/icons/delete-bin-line.svg" alt="" />
+                                                    <img src="../assets/icons/pencil-line.svg" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+            });
+          },
+          error: function (error) {
+            alert("Failed to fetch tasks: " + error.responseJSON.detail);
+          },
+        });
+      });
+    </script>
+    <!-- FontAwesome for Icons -->
+  </body>
+</html>
