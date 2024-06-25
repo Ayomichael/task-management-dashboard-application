@@ -1,5 +1,7 @@
-# Task Management Backend
 
+# Task Management
+
+# Backend
 This is a Django REST framework-based backend for a task management system. It includes user registration, login, task creation, and task management features. The project uses JWT for authentication.
 
 ## Setup Instructions
