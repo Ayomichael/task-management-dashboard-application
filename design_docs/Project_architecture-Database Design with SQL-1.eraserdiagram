@@ -1,0 +1,38 @@
+entity-relationship-diagram
+
+title Database Design with SQL
+users [icon: user, color: yellow]{
+  id string pk
+  username string
+  email string
+}
+
+auth [icon: lock, color: red]{
+  id string pk
+  userId string fk
+  hashedPassword string
+}
+
+authcodes [icon: key, color: green]{
+  id string pk
+  userId string fk
+  verificationCode string
+  expiresAt timestamp
+}
+
+tasks [icon: clipboard, color: blue]{
+  id string pk
+  title string
+  description string
+  status enum
+  priority enum
+  due_date Datetime
+  category string
+  userId string fk
+  assigned_to string fk
+}
+// End of tables
+// define relationships
+auth.userId > users.id
+authcodes.userId > users.id
+tasks.userId > users.id
