@@ -1,0 +1,15 @@
+sequence-diagram
+
+Client [icon: monitor] > API: Data request
+Client [icon: monitor] < API: Data response
+Client [icon: monitor] > API: User Authentication request
+Client [icon: monitor] < API: Authentication success!
+
+activate Client
+
+API [icon: server] > Database: service request
+
+
+Database [icon: database] > API: service response
+
+deactivate Client
