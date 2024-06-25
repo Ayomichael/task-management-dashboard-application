@@ -1,3 +1,4 @@
 env/
 .eraser/
 node_modules/
+db.sqlite3

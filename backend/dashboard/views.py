@@ -5,42 +5,45 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserSerializer, TaskSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import Task
 from datetime import date
 
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data.update({'username': self.user.username})
+        return data
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
     
 class CreateUserView(generics.CreateAPIView):
-    def post(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-            }, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-class LoginView(APIView):
-    permission_classes = [permissions.AllowAny]
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        # print(f"User created: {user.username}, {user.email}, {user.is_active}") used to debug
+        refresh = RefreshToken.for_user(user)
+        response_data = {
+            'user': serializer.data,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        }
 
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        user = authenticate(request, username=username, password=password)
+        return Response(response_data, status=status.HTTP_201_CREATED)
 
-        if user:
-            login(request, user)
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-                
-            }, status=status.HTTP_200_OK)
-        return Response({'detail': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+class LoginUserView(CustomTokenObtainPairView):
+    
+    # API view to handle user login and return JWT tokens.
+    pass
+
 
 class TaskListCreate(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
@@ -71,15 +74,21 @@ class TaskDelete(generics.DestroyAPIView):
     def get_queryset(self):
         return Task.objects.filter(assigned_to=self.request.user)
 
-class CompletedTasks(TaskListCreate):
+class CompletedTasks(generics.ListAPIView):
+    serializer_class = TaskSerializer
     def get_queryset(self):
-        return super().get_queryset().filter(status='Completed')
+        user = self.request.user
+        return Task.objects.filter(status='Completed',assigned_to=user)
 
-class InProgressTasks(TaskListCreate):
+class InProgressTasks(generics.ListAPIView):
+    serializer_class = TaskSerializer
     def get_queryset(self):
-        return super().get_queryset().filter(status='In Progress')
+        user = self.request.user
+        return Task.objects.filter(status='In Progress',assigned_to=user)
 
-class OverdueTasks(TaskListCreate):
+class OverdueTasks(generics.ListAPIView):
+    serializer_class = TaskSerializer
     def get_queryset(self):
-        today = date.today()
-        return super().get_queryset().filter(status='In Progress', due_date__lt=today).exclude(due_date=None)
+        user = self.request.user
+        # today = date.today()
+        return Task.objects.filter(status='In Progress', due_date__lt=date.today(),assigned_to=user).exclude(due_date=None)
