@@ -36,4 +36,3 @@ tasks [icon: clipboard, color: blue]{
 auth.userId > users.id
 authcodes.userId > users.id
 tasks.userId > users.id
-
