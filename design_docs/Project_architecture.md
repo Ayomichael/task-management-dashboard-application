@@ -48,7 +48,7 @@ Given the security considerations for our system, we will use the following stra
 - Authentication tokens will be passed between the front-end and the API to check for authorization for objects and resources.
 6.App Architecture
 
-![Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---2oddzgYm6lB8PmCnv7j1p---figure---RY6ZytQbqxCSA6OMc8GTlA.png "Component")
+![Component](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---YC-ehJRLYWr_w2f1gkYwO---figure---RY6ZytQbqxCSA6OMc8GTlA.png "Component")
 
 
 6.1 Overview of Layers/Modules
@@ -57,13 +57,13 @@ Given the security considerations for our system, we will use the following stra
 - Back-End Module: Manages server-side logic, API requests, and database interactions.
 - Database Module: Stores and retrieves all application data.
 6.2 Component Diagrams 
-![client/server](undefined "client/server")
+![client/server](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---FjjKFQAbvGxS9vGj7GQkP---figure---41gMjtYotjn8G6ld6f-JUQ.png "client/server")
 
 
 
 6.3 Database Design
 
-![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---kNqEbfZHsnTEiQrDVaZi3---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
+![Database design](/.eraser/pqCx9JVttXYKuNk2ju6p___LGpJOnbYLnQnYB9rdGHkpn0yBjH3___---figure---lhIkHD9i4hbkON_luDahh---figure---9LT1_Cf7z65jE_2uyrKXiQ.png "Database design")
 
 - Users table: Stores user information and hashed passwords.
 - Auth table: Stores hashed passwords with a foreign key reference to the user table.
